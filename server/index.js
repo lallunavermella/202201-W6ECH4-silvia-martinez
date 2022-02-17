@@ -1,8 +1,9 @@
 const debug = require("debug")("ch-things:server");
+const { application } = require("express");
 const express = require("express");
 const morgan = require("morgan");
 const { errorNotFound, errorDefault } = require("./middlewares/errors");
-const thingsRouter = require("./routes/things");
+const thingsRouter = require("./routers/things");
 
 const app = express();
 
@@ -21,12 +22,12 @@ const upServer = (port) =>
     });
   });
 
+app.use(express.json());
 app.use(morgan("dev"));
+app.use("/list", thingsRouter);
 
 app.use(errorNotFound);
 
 app.use(errorDefault);
-
-app.use("things/", thingsRouter);
 
 module.exports = upServer;

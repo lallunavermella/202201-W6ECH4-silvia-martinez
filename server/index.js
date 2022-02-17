@@ -1,6 +1,7 @@
 const debug = require("debug")("ch-things:server");
 const express = require("express");
 const morgan = require("morgan");
+const { errorNotFound, errorDefault } = require("./middlewares/error");
 
 const app = express();
 
@@ -20,5 +21,9 @@ const upServer = (port) =>
   });
 
 app.use(morgan("dev"));
+
+app.use(errorNotFound);
+
+app.use(errorDefault);
 
 module.exports = upServer;

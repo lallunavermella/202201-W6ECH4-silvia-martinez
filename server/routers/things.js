@@ -9,33 +9,30 @@ router.get("/things", async (req, res) => {
   res.json({ things });
 });
 
-router.get("/things", async (req, res) => {
-  const things = await Things.find();
-  res.json({ things });
-});
-
 router.get("/things/:idThing", async (req, res) => {
-  const thing = await Thing.find();
+  const thing = await Thing.findById(req.params.idThing);
+  res.status(200);
   res.json({ thing });
 });
 
 router.delete("/things/:idThing", async (req, res) => {
-  const thing = await Thing.find();
+  const thing = await Thing.findByIdAndDelete(req.params.idThing);
+  res.status(202);
   res.json({ thing });
 });
 
 router.post("/things", async (req, res) => {
-  const Gatete = req.body;
+  const newThing = req.body;
   const createdThing = await Thing.create(newThing);
   res.status(201);
   res.json(createdThing);
 });
 
 router.put("/things", async (req, res) => {
-  const newGatete = req.body;
-  const modifiedThing = await Thing.create(newThing);
+  const { _id: id } = req.body;
+  const createdThing = await Thing.findByIdAndUpdate(id, req.body);
   res.status(201);
-  res.json(modifiedThing);
+  res.json(createdThing);
 });
 
 module.exports = router;

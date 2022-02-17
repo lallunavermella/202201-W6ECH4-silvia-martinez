@@ -30,3 +30,5 @@ router.put("/things", async (req, res) => {
   res.status(201);
   res.json(createdThing);
 });
+
+module.exports = router;

@@ -1,5 +1,6 @@
 require("dotenv").config();
 const debug = require("debug")("ch-things:root");
+const chalk = require("chalk");
 const upServer = require("./server");
 const connectDataBase = require("./server/db");
 
@@ -8,10 +9,10 @@ const dbstring = process.env.MONGO_STRING;
 
 (async () => {
   try {
-    await upServer(port);
     await connectDataBase(dbstring);
-    debug("it work");
+    await upServer(port);
+    debug(chalk.green("it work"));
   } catch (error) {
-    debug(`Error`);
+    debug(chalk.red(`Error`));
   }
 })();

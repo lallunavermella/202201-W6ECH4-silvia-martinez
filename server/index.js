@@ -1,7 +1,7 @@
 const debug = require("debug")("ch-things:server");
 const express = require("express");
 const morgan = require("morgan");
-const { errorNotFound, errorDefault } = require("./middlewares/error");
+const { errorNotFound, errorDefault } = require("./middlewares/errors");
 
 const app = express();
 

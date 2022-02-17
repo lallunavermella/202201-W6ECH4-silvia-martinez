@@ -23,8 +23,10 @@ const upServer = (port) =>
   });
 
 app.use(express.json());
+
 app.use(morgan("dev"));
-app.use("/list", thingsRouter);
+
+app.use(thingsRouter);
 
 app.use(errorNotFound);
 

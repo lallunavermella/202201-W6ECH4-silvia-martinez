@@ -4,13 +4,14 @@ const express = require("express");
 const morgan = require("morgan");
 const { errorNotFound, errorDefault } = require("./middlewares/errors");
 const thingsRouter = require("./routers/things");
+const chalk = require("chalk");
 
 const app = express();
 
 const upServer = (port) =>
   new Promise((resolve, reject) => {
     const server = app.listen(port, () => {
-      debug(`Server listening on http://localhost:${port}`);
+      debug(chalk.cyan(`Server listening on http://localhost:${port}`));
       resolve();
     });
 

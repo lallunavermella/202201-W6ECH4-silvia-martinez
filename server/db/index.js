@@ -1,4 +1,5 @@
-const debug = require("debug")("ch--things-mongo:db");
+const debug = require("debug")("ch-things:mongo");
+const chalk = require("chalk");
 const mongoose = require("mongoose");
 
 const connectDataBase = (connectionString) =>
@@ -8,7 +9,7 @@ const connectDataBase = (connectionString) =>
         reject(new Error(`Couldn't connect to the database: ${error.message}`));
         return;
       }
-      debug("Connected to DB");
+      debug(chalk.bgMagenta("Connected to DB"));
       resolve();
     });
   });

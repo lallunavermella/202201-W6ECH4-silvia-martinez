@@ -1,10 +1,9 @@
 const debug = require("debug")("ch-things:server");
-const { application } = require("express");
 const express = require("express");
 const morgan = require("morgan");
+const chalk = require("chalk");
 const { errorNotFound, errorDefault } = require("./middlewares/errors");
 const thingsRouter = require("./routers/things");
-const chalk = require("chalk");
 
 const app = express();
 
@@ -27,7 +26,7 @@ app.use(express.json());
 
 app.use(morgan("dev"));
 
-app.use(thingsRouter);
+app.use("/things", thingsRouter);
 
 app.use(errorNotFound);
 
